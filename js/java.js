@@ -4,11 +4,11 @@ let searchContainer = document.getElementById("searchContainer");
 //start loder
 $(document).ready(() => {
   getCategories("").then(() => {
-    $(".loading-screen").fadeOut(500)
-    $("body").css("overflow", "visible")
+    $(".loading-screen").fadeOut(500);
+    $("body").css("overflow", "visible");
 
-  })
-})
+  });
+});
 //end loder
 //start nav
 function openSidebar() {
@@ -19,7 +19,7 @@ function openSidebar() {
   sidebar.style.left = "0px";
   openBtn.style.display = "none";
   closeBtn.style.display = "inline-block";
-}
+};
 
 function closeSidebar() {
   const sidebar = document.getElementById("sidebar");
@@ -29,7 +29,7 @@ function closeSidebar() {
   sidebar.style.left = "-250px";
   openBtn.style.display = "inline-block";
   closeBtn.style.display = "none";
-}
+};
 
 //end nav
 //start
@@ -37,14 +37,14 @@ function closeSidebar() {
 
 async function getCategories(term) {
   try {
-    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
-    var dataApi = await res.json()
-    showSearchInputs()
-    displayMeals(dataApi.meals)
+    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
+    var dataApi = await res.json();
+    showSearchInputs();
+    displayMeals(dataApi.meals);
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
-}
+};
 
 
 function displayMeals(meals) {
@@ -61,18 +61,18 @@ function displayMeals(meals) {
               </div>
       </div>
       `
-  }
-  rowData.innerHTML = cartona
-}
+  };
+  rowData.innerHTML = cartona;
+};
 
 async function getMealDetails(mealID) {
-  searchContainer.innerHTML = ""
-  rowData.innerHTML = ""
+  searchContainer.innerHTML = "";
+  rowData.innerHTML = "";
   let respone = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`);
   respone = await respone.json();
-  console.log(respone.meals)
-  displayMealDetails(respone.meals[0])
-}
+  console.log(respone.meals);
+  displayMealDetails(respone.meals[0]);
+};
 
 
 function displayMealDetails(meal) {
@@ -80,8 +80,8 @@ function displayMealDetails(meal) {
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients += `<li class="alert alert-info m-2 p-1">${meal[`strMeasure${i}`]} ${meal[`strIngredient${i}`]}</li>`
-    }
-  }
+    };
+  };
 
   let cartona = "";
 
@@ -106,22 +106,22 @@ function displayMealDetails(meal) {
               <a target="_blank" href="${meal.strYoutube}" class="btn btn-danger">Youtube</a>
           </div>
       `
-  rowData.innerHTML = cartona
-}
+  rowData.innerHTML = cartona;
+};
 
 //end 
 //start
 async function getMeCategories() {
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`)
-    var dataApi = await res.json()
-    displayCategories(dataApi.categories)
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`);
+    var dataApi = await res.json();
+    displayCategories(dataApi.categories);
   } catch (error) {
     console.log("error")
-  }
-}
+  };
+};
 
 function displayCategories(meals) {
   let cartona = "";
@@ -137,38 +137,38 @@ function displayCategories(meals) {
                 </div>
         </div>
       `
-  }
-  rowData.innerHTML = cartona
+  };
+  rowData.innerHTML = cartona;
 }
 
 async function getCategoryMeals(category) {
 
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-    response = await response.json()
-    displayMeals(response.meals.slice(0, 20))
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+    response = await response.json();
+    displayMeals(response.meals.slice(0, 20));
   } catch (error) {
     console.log("error")
-  }
+  };
 
-}
+};
 
 //end
 //start
 
 async function getArea() {
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?a=list`)
-    var dataApi = await res.json()
-    displayArea(dataApi.meals)
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?a=list`);
+    var dataApi = await res.json();
+    displayArea(dataApi.meals);
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
-}
+};
 function displayArea(arr) {
   let cartona = "";
   for (let i = 0; i < arr.length; i++) {
@@ -180,19 +180,19 @@ function displayArea(arr) {
               </div>
       </div>
       `
-  }
-  rowData.innerHTML = cartona
-}
+  };
+  rowData.innerHTML = cartona;
+};
 
 async function getArMeals(area) {
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
-    response = await response.json()
-    displayMeals(response.meals.slice(0, 20))
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+    response = await response.json();
+    displayMeals(response.meals.slice(0, 20));
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
 
 }
@@ -202,16 +202,16 @@ async function getArMeals(area) {
 
 async function getDients() {
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`)
-    var dataApi = await res.json()
-    displayDients(dataApi.meals.slice(0, 20))
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`);
+    var dataApi = await res.json();
+    displayDients(dataApi.meals.slice(0, 20));
   } catch (error) {
-    console.log("error")
+    console.log("error");
 
   }
-}
+};
 
 function displayDients(arr) {
   let cartona = "";
@@ -226,22 +226,22 @@ function displayDients(arr) {
               </div>
       </div>
       `
-  }
+  };
 
-  rowData.innerHTML = cartona
+  rowData.innerHTML = cartona;
 }
 async function getIngredients(ingredients) {
   try {
-    rowData.innerHTML = ""
-    searchContainer.innerHTML = ""
-    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredients}`)
-    response = await response.json()
-    displayMeals(response.meals.slice(0, 20))
+    rowData.innerHTML = "";
+    searchContainer.innerHTML = "";
+    var response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredients}`);
+    response = await response.json();
+    displayMeals(response.meals.slice(0, 20));
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
 
-}
+};
 
 
 
@@ -261,7 +261,7 @@ function showSearchInputs() {
   `;
   searchContainer.innerHTML = searchUI; 
   rowData.innerHTML = "";
-}
+};
 
 async function searchByName(term) {
   try {
@@ -272,7 +272,7 @@ async function searchByName(term) {
   } catch (error) {
     console.log("search error by name", error);
   }
-}
+};
 
 async function searchByLetter(letter) {
   try {
@@ -283,7 +283,7 @@ async function searchByLetter(letter) {
   } catch (error) {
     console.log("search error by letter", error);
   }
-}
+};
 
 //end search
 
@@ -291,7 +291,7 @@ async function searchByLetter(letter) {
 let nameInput, emailInput, phoneInput, ageInput, passwordInput, repasswordInput, submitBtn;
 
 function showContacts() {
-  searchContainer.innerHTML = ""
+  searchContainer.innerHTML = "";
   rowData.innerHTML = `
     <div class="contact min-vh-100 d-flex justify-content-center align-items-center">
       <div class="container w-75 text-center">
@@ -344,7 +344,7 @@ function showContacts() {
   passwordInput = document.getElementById("passwordInput");
   repasswordInput = document.getElementById("repasswordInput");
   submitBtn = document.getElementById("submitBtn");
-}
+};
 
 function inputsValidation() {
   if (
@@ -359,7 +359,7 @@ function inputsValidation() {
   } else {
     submitBtn.setAttribute("disabled", true);
   }
-}
+};
 
 function nameValidation() {
   let regx = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
@@ -376,7 +376,7 @@ function nameValidation() {
     nameAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 
 function emailValidation() {
   let regx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -393,7 +393,7 @@ function emailValidation() {
     emailAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 
 function phoneValidation() {
   let regx = /^01[0125][0-9]{8}$/;
@@ -410,7 +410,7 @@ function phoneValidation() {
     phoneAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 
 function ageValidation() {
   let regx = /^[1-9][0-9]?$/;
@@ -427,7 +427,7 @@ function ageValidation() {
     ageAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 
 function passwordValidation() {
   let regx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -444,7 +444,7 @@ function passwordValidation() {
     passwordAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 
 function repasswordValidation() {
   let repasswordAlert = document.getElementById("repasswordAlert");
@@ -460,5 +460,5 @@ function repasswordValidation() {
     repasswordAlert.classList.remove("d-none");
     return false;
   }
-}
+};
 //end form
