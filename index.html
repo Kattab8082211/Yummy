@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yummy</title>
+  <link rel="shortcut icon" href="./image/download.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/styel.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div
+    class="loading-screen position-fixed top-0 start-0 end-0 bottom-0 bg-black justify-content-center align-items-center">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
+  <section>
+    <div id="sidebar" class="sidebar"
+      style="position: fixed; left: -250px; top: 0; width: 250px; height: 100vh; background-color: #333; transition: left 0.3s;">
+      <ul>
+        <li onclick="showSearchInputs(),closeSidebar() "><a href="#">Search</a></li>
+        <li onclick="getMeCategories(),closeSidebar()"><a href="#">Categories</a></li>
+        <li onclick="getArea(),closeSidebar()"><a href="#">Area</a></li>
+        <li onclick="getDients(),closeSidebar()"><a href="#">Ingredients</a></li>
+        <li onclick="showContacts(),closeSidebar()"><a href="#">Contact Us</a></li>
+      </ul>
+      <div>
+        <button id="closeBtn" onclick="closeSidebar()" style="display: none;"><i
+            class="fa-solid fa-xmark fa-beat fa-xl"></i></button>
+      </div>
+    </div>
+
+  </section>
+  <div class="  menu nav-header d-flex flex-column justify-content-between py-4 text-center px-2 bg-white text-black">
+    <div class="menu-ico"><img src="./image/download.png" /></div>
+    <div class="menu-icon"><button id="openBtn" onclick="openSidebar()"><i
+          class="fa-solid fa-bars fa-beat fa-lg"></i></button></div>
+    <div class="menu-ic"><i class="fa-solid fa-share fa-beat fa-xl"></i></div>
+  </div>
+  <div id="searchContainer" class="container">
+  </div>
+  <div class="container text-center mt-5">
+    <div class="row" id="rowData">
+    </div>
+  </div>
+
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jecoiry.js"></script>
+  <script src="js/java.js"></script>
+</body>
+
+</html>
